@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Globe, Zap, Shield, BarChart, ArrowRight, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { CtaBanner } from "@/components/home/CtaBanner"
 
 const features = [
   {
@@ -171,26 +172,7 @@ export default function CdnPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-screen-xl mx-auto px-4 md:px-6"
-        >
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">Zrychlete svůj web ještě dnes</h2>
-            <p className="text-xl text-blue-100">
-              Vyzkoušejte naši CDN zdarma po dobu 30 dní a přesvědčte se o jejích výhodách.
-            </p>
-            <Button size="lg" variant="outline" className="bg-white text-blue-600 hover:bg-blue-50">
-              Začít zdarma
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
-        </motion.div>
-      </section>
+     <CtaBanner />
     </div>
   )
 }

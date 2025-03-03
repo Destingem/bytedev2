@@ -1,7 +1,17 @@
 "use client"
 import { Hero } from "@/components/home/Hero"
+import { BusinessApproach } from "@/components/home/BusinessApproach"
+import { RentalModel } from "@/components/home/RentalModel"
+import { ForWhom } from "@/components/home/ForWhom"
 import { motion, useScroll, useSpring } from "framer-motion"
 import { useState } from "react"
+import { Portfolio } from "@/components/home/Portfolio"
+import { AuditSection } from "@/components/home/AuditSection"
+import { HostingSection } from "@/components/home/HostingSection"
+import { CdnSection } from "@/components/home/CdnSection"
+import { CtaBanner } from "@/components/home/CtaBanner"
+import { OurProjects } from "@/components/home/OurProjects"
+
 export default function Home() {
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, {
@@ -32,14 +42,14 @@ export default function Home() {
 
       <main className="flex-1" onMouseMove={handleMouseMove}>
         <Hero />
-       {/* <Hero />
         <BusinessApproach />
+        <OurProjects />
         <RentalModel />
-        <Pricing />
-        <Showcase />
+        <AuditSection />
+        <HostingSection />
+        <CdnSection />
         <ForWhom />
-        <FAQ />
-        <CTA />*/}
+        <CtaBanner />
       </main>
     </>
   )

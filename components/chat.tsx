@@ -51,6 +51,19 @@ export function Chat() {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+  // Expose toggle function to global scope for other components to use
+  useEffect(() => {
+    // Create toggle function that can be called from other components
+    window.toggleChatWindow = () => {
+      setIsOpen(true);
+    };
+
+    // Clean up when component unmounts
+    return () => {
+      delete window.toggleChatWindow;
+    };
+  }, []);
+
   const handleSubmit = async (message: string) => {
     try {
       const newMessage: ChatMessage = {

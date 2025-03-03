@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { ArrowRight, ExternalLink, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { CtaBanner } from "@/components/home/CtaBanner"
 
 type Project = {
   id: number
@@ -21,44 +22,150 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: "E-shop pro lokální farmáře",
-    description: "Moderní e-commerce platforma spojující lokální farmáře přímo se zákazníky.",
-    image: "/placeholder.svg?height=400&width=600",
-    category: "E-commerce",
-    technologies: ["Next.js", "Stripe", "Tailwind CSS"],
-    link: "https://farmar.example.com",
-    results: ["3x větší dosah produktů", "500+ registrovaných farmářů", "98% spokojenost zákazníků"],
+    title: "Autoškola Pospíšil",
+    description: "Moderní webová prezentace s rezervačním systémem pro autoškolu.",
+    image: "/projects/autoskola.jpg",
+    category: "Weby",
+    technologies: ["WordPress", "PHP", "MySQL"],
+    link: "https://autoskolapospisil.cz",
+    results: [
+      "Nahrazení zastaralého webu z roku 2006",
+      "Významný nárůst poptávky",
+      "Automatizace rezervačního procesu"
+    ]
   },
   {
     id: 2,
-    title: "Rezervační systém pro řemeslníky",
-    description: "Komplexní platforma pro správu rezervací a zakázek řemeslníků.",
-    image: "/placeholder.svg?height=400&width=600",
-    category: "SaaS",
-    technologies: ["React", "Node.js", "PostgreSQL"],
-    github: "https://github.com/example/booking-system",
-    results: ["40% úspora času při správě rezervací", "2000+ aktivních uživatelů", "95% dokončených zakázek"],
+    title: "Polystyren sypaný",
+    description: "Modernizace HTML webu na Next.js aplikaci s vylepšenou SEO optimalizací.",
+    image: "/projects/polystyren.jpg",
+    category: "E-commerce",
+    technologies: ["Next.js", "React", "Tailwind CSS"],
+    link: "https://www.polystyrensypany.cz",
+    results: [
+      "Zlepšení pozic ve vyhledávačích",
+      "Nárůst organických poptávek",
+      "Rychlejší načítání stránek"
+    ]
   },
   {
     id: 3,
-    title: "Realitní portál",
-    description: "Moderní webová aplikace pro prezentaci a vyhledávání nemovitostí.",
-    image: "/placeholder.svg?height=400&width=600",
-    category: "Web",
-    technologies: ["Next.js", "Prisma", "MongoDB"],
-    link: "https://reality.example.com",
-    results: ["50% nárůst poptávek", "30% rychlejší načítání", "2x více konverzí"],
+    title: "SSK Slatina Brno",
+    description: "Prototyp moderního webu pro sportovní klub.",
+    image: "/projects/ssk.jpg",
+    category: "Weby",
+    technologies: ["Figma", "UI/UX", "Prototyping"],
+    results: [
+      "Vytvoření interaktivního prototypu",
+      "Uživatelské testování",
+      "Definice designového systému"
+    ]
   },
+  {
+    id: 4,
+    title: "Follows.cz",
+    description: "Social Media Marketing platforma pro správu sociálních sítí.",
+    image: "/projects/follows.jpg",
+    category: "Aplikace",
+    technologies: ["React", "Node.js", "PostgreSQL"],
+    link: "https://follows.cz",
+    results: [
+      "Komplexní SMM řešení",
+      "Automatizace marketingových procesů",
+      "Škálovatelná architektura"
+    ]
+  },
+  {
+    id: 5,
+    title: "Swordfish Trombones",
+    description: "Webová prezentace pro hudební kapelu.",
+    image: "/projects/swordfish.jpg",
+    category: "Weby",
+    technologies: ["Next.js", "Tailwind CSS", "Framer Motion"],
+    results: [
+      "Moderní designové zpracování",
+      "Optimalizace pro mobilní zařízení",
+      "Integrace sociálních sítí"
+    ]
+  },
+  {
+    id: 6,
+    title: "Vinařství Badin",
+    description: "E-shop a prezentace pro vinařství.",
+    image: "/projects/badin.jpg",
+    category: "E-commerce",
+    technologies: ["WordPress", "WooCommerce", "PHP"],
+    link: "https://www.vinarstvibadin.cz",
+    results: [
+      "Kompletní e-commerce řešení",
+      "Správa skladu",
+      "Marketingová automatizace"
+    ]
+  },
+  {
+    id: 7,
+    title: "Imagedit.io",
+    description: "Cloudová platforma pro správu a úpravu obrázků s vlastním CDN.",
+    image: "/projects/imagedit.jpg",
+    category: "Aplikace",
+    technologies: ["AWS", "Symfony", "Docker", "PostgreSQL"],
+    results: [
+      "Škálovatelná cloud architektura",
+      "Vlastní CDN řešení",
+      "Vysoký výkon a dostupnost"
+    ]
+  },
+  {
+    id: 8,
+    title: "Jirkova tesla",
+    description: "Prototyp webu pro inovativní startup v automobilovém průmyslu.",
+    image: "/projects/tesla.jpg",
+    category: "Weby",
+    technologies: ["Figma", "Next.js", "React"],
+    results: [
+      "Kompletní UX/UI návrh",
+      "Prototyp produktu",
+      "Uživatelské testování"
+    ]
+  },
+  {
+    id: 9,
+    title: "Offtrader Trading Platform",
+    description: "Online platforma pro obchodování a vzdělávání v oblasti financí.",
+    image: "/projects/offtrader.jpg",
+    category: "Aplikace",
+    technologies: ["Next.js", "Appwrite", "YooKassa"],
+    link: "https://offtrader.ru",
+    results: [
+      "Komplexní platforma pro trading",
+      "Integrace platebního systému YooKassa",
+      "Automatizace vzdělávacího procesu"
+    ]
+  },
+  {
+    id: 10,
+    title: "Offtrader Academy",
+    description: "Vzdělávací platforma pro trading a finanční gramotnost.",
+    image: "/projects/offtrader-academy.jpg",
+    category: "Aplikace",
+    technologies: ["Moodle", "PHP", "MySQL"],
+    link: "https://academy.offtrader.ru",
+    results: [
+      "Vlastní Moodle instance",
+      "Personalizované vzdělávací materiály",
+      "Automatické hodnocení a certifikace"
+    ]
+  }
 ]
 
-const categories = ["Vše", "E-commerce", "SaaS", "Web"]
+const categories = ["Všechny", "E-commerce", "Weby", "Aplikace", "Branding"]
 
 export default function PortfolioPage() {
-  const [selectedCategory, setSelectedCategory] = useState("Vše")
+  const [selectedCategory, setSelectedCategory] = useState("Všechny")
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   const filteredProjects = projects.filter(
-    (project) => selectedCategory === "Vše" || project.category === selectedCategory,
+    (project) => selectedCategory === "Všechny" || project.category === selectedCategory,
   )
 
   return (
@@ -84,60 +191,87 @@ export default function PortfolioPage() {
       </section>
 
       {/* Portfolio Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-screen-xl mx-auto px-4 md:px-6">
-          {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 justify-center mb-12">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
+      <section className="py-32 md:py-40 bg-white">
+        <div className="container px-4 md:px-6 mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Naše <span className="text-blue-600">projekty</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Vybraná řešení, která jsme navrhli a implementovali pro naše klienty.
+            </p>
+          </motion.div>
+
+          {/* Categories filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-16">
+            {categories.map((category, index) => (
+              <motion.button
+                key={index}
                 onClick={() => setSelectedCategory(category)}
-                className="min-w-[100px]"
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                  selectedCategory === category 
+                    ? "bg-blue-600 text-white shadow-md"
+                    : "bg-gray-50 text-gray-600 hover:bg-gray-100"
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {category}
-              </Button>
+              </motion.button>
             ))}
           </div>
 
           {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <AnimatePresence mode="wait">
               {filteredProjects.map((project) => (
                 <motion.div
                   key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
-                  className="group cursor-pointer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5 }}
                   onClick={() => setSelectedProject(project)}
+                  className="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer"
                 >
-                  <div className="relative h-[300px] rounded-xl overflow-hidden mb-4">
-                    <Image
-                      src={project.image || "/placeholder.svg"}
+                  <div className="relative w-full aspect-[16/9] overflow-hidden">
+                    <Image 
+                      src={project.image} 
                       alt={project.title}
                       fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <div className="flex items-center gap-2 text-white">
-                          <span>Zobrazit detail</span>
-                          <ArrowRight className="w-4 h-4" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute bottom-6 left-6 right-6">
+                        <div className="flex gap-2 mb-2">
+                          {project.technologies.map((tech, index) => (
+                            <span 
+                              key={index} 
+                              className="text-xs font-medium bg-white/20 backdrop-blur-sm text-white px-2 py-1 rounded-full"
+                            >
+                              {tech}
+                            </span>
+                          ))}
                         </div>
                       </div>
                     </div>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{project.title}</h3>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span key={tech} className="px-3 py-1 text-sm bg-blue-100 text-blue-600 rounded-full">
-                        {tech}
-                      </span>
-                    ))}
+                  <div className="p-6">
+                    <div className="text-xs font-medium text-blue-600 mb-2">
+                      {project.category}
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600">
+                      {project.description}
+                    </p>
                   </div>
                 </motion.div>
               ))}
@@ -228,6 +362,7 @@ export default function PortfolioPage() {
           </motion.div>
         )}
       </AnimatePresence>
+      <CtaBanner />
     </div>
   )
 }

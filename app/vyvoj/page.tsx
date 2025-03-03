@@ -4,6 +4,9 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Code2, GitBranch, Laptop, Rocket, Server, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { RoadmapSection } from "@/components/vyvoj/RoadmapSection"
+import { SmartSolutions } from "@/components/vyvoj/SmartSolutions"
+import { CtaBanner } from "@/components/home/CtaBanner"
 
 const technologies = [
   {
@@ -162,6 +165,14 @@ export default function VyvojPage() {
           </div>
         </div>
       </section>
+
+      {/* Roadmap Section */}
+      <RoadmapSection />
+
+      {/* Smart Solutions Section */}
+      <SmartSolutions />
+
+      <CtaBanner />
     </div>
   )
 }
