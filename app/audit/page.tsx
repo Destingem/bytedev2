@@ -2,9 +2,16 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useState } from "react"
 import { Search, BarChart, FastForwardIcon as Speed, ArrowRight, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CtaBanner } from "@/components/home/CtaBanner"
+import { AuditForm } from "@/components/audit/AuditForm"
+import { AuditResults } from "@/components/audit/AuditResults"
+import { AuditLoading } from "@/components/audit/AuditLoading"
+import { useRouter } from "next/navigation"
+import { extractDomain } from "@/lib/utils"
+import { AuditHistory } from "@/components/audit/AuditHistory"
 
 const auditTypes = [
   {
@@ -57,6 +64,25 @@ const benefits = [
 ]
 
 export default function AuditPage() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
+  const router = useRouter()
+
+  const handleAuditSubmit = async (url: string) => {
+    try {
+      setIsLoading(true)
+      setError("")
+      
+      // Instead of processing everything here, redirect to the domain-specific page
+      const domain = extractDomain(url)
+      router.push(`/audit/${domain}`)
+    } catch (err) {
+      console.error("Error:", err)
+      setError(err.message || "An error occurred")
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -74,32 +100,46 @@ export default function AuditPage() {
                 Audit webu pro <span className="text-blue-600">maximální výkon</span>
               </h1>
               <p className="text-xl text-gray-600">
-                Komplexní analýza vašeho webu z technického, SEO a obchodního pohledu. Získejte konkrétní doporučení pro
-                zlepšení.
+                Zadejte URL vašeho webu a získejte okamžitou analýzu s návrhy na zlepšení výkonu, SEO a uživatelské zkušenosti.
               </p>
-              <div className="flex gap-4">
-                <Button size="lg">Objednat audit</Button>
-                <Button size="lg" variant="outline">
-                  Více informací
-                </Button>
-              </div>
+              
+              {!isLoading && (
+                <AuditForm onSubmit={handleAuditSubmit} isLoading={isLoading} />
+              )}
+              
+              {error && (
+                <div className="text-red-500 p-4 bg-red-50 rounded-md">
+                  {error}
+                </div>
+              )}
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="relative"
+              className="relative hidden md:block"
             >
-              <div className="relative h-[400px] rounded-2xl overflow-hidden">
-                <Image src="/placeholder.svg?height=400&width=600" alt="Audit webu" fill className="object-cover" />
+              <div className="relative h-[400px] rounded-2xl overflow-hidden bg-blue-100">
                 <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-transparent" />
+                <div className="absolute inset-0 flex items-center justify-center text-blue-500">
+                  <svg className="w-24 h-24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 16L16 12L12 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M8 12H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Audit Types Section */}
+      {isLoading && <AuditLoading />}
+      
+      {/* Audit History Section - only show when not loading */}
+      {!isLoading && <AuditHistory />}
+
+      {/* Rest of the content - Audit Types Section and Benefits Section */}
       <section className="py-20 bg-white">
         <div className="max-w-screen-xl mx-auto px-4 md:px-6">
           <motion.div
